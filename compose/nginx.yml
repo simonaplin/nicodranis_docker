@@ -1,6 +1,6 @@
 version: '3'
 services:
-  app: 
+  nginx: 
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: nginx-proxy-manager
     ports:
@@ -10,3 +10,27 @@ services:
     volumes:
       - /docker/nginx/data:/data
       - /docker/nginx/letsencrypt:/etc/letsencrypt
+    networks:
+      - proxy
+  authelia:
+    image: authelia/authelia
+    container_name: authelia
+    volumes:
+      - "/docker/authelia:/config"
+    networks:
+      - proxy
+    tty: true
+    stdin_open: true
+    ports:
+      - "9091:9091"
+    restart: unless-stopped
+    healthcheck:
+      ## In production the healthcheck section should be commented.
+      disable: true
+    environment:
+      - TZ=Europe/London
+    depends_on:
+      - "nginx"
+networks:
+  proxy:
+    external: true 
