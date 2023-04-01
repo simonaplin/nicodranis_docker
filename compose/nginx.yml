@@ -10,6 +10,7 @@ services:
     volumes:
       - /docker/nginx/data:/data
       - /docker/nginx/letsencrypt:/etc/letsencrypt
+      - /docker/nginx/snippets:/snippets:ro
     networks:
       - proxy
   authelia:
