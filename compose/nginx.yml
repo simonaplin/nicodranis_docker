@@ -4,9 +4,9 @@ services:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: nginx-proxy-manager
     ports:
-      - '280:80'
+      - '80:80'
       - '281:81'
-      - '2443:443'
+      - '443:443'
     volumes:
       - /docker/nginx/data:/data
       - /docker/nginx/letsencrypt:/etc/letsencrypt
