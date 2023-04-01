@@ -7,3 +7,6 @@ services:
       - '280:80'
       - '281:81'
       - '2443:443'
+    volumes:
+      - /docker/nginx/data:/data
+      - /docker/nginx/letsencrypt:/etc/letsencrypt
