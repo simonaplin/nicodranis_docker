@@ -11,6 +11,7 @@ services:
       - /docker/nginx/data:/data
       - /docker/nginx/letsencrypt:/etc/letsencrypt
       - /docker/nginx/snippets:/snippets:ro
+      - /docker/nginx/json_log:/var/log/nginx
     networks:
       - proxy
   authelia:
